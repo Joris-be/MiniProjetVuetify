@@ -20,36 +20,126 @@ const handleFileUpload = (event) => {
 </script>
 
 <template>
-  <li>
-    <div v-if="!isEditing">
-      {{ med.denomination }} - Stock: {{ med.qte }} - Forme:
-      {{ med.formepharmaceutique }}
-      <img
+  <div v-if="!isEditing">
+    <v-card elevation="3" rounded="lg">
+      <v-img
         v-if="med.photo"
         :src="'https://apipharmacie.pecatte.fr/images/' + med.photo"
         alt="image du medicament"
-        width="150"
+        height="175"
+        cover
       />
-      <button @click="$emit('eventIncrement', med)">+1</button>
-      <button @click="$emit('eventDecrement', med)">-1</button>
-      <button @click="isEditing = true">Modifier</button>
-      <button @click="$emit('eventDelete', med.id)">Supprimer</button>
-    </div>
-
-    <div v-else>
-      <input v-model="med.denomination" type="text" />
-      <input v-model="med.qte" type="number" />
-      <input v-model="med.formepharmaceutique" type="text" />
-      <input id="photo" @change="handleFileUpload" type="file" />
-      <button
-        @click="
-          $emit('eventEdit', med);
-          isEditing = false;
-        "
+      <v-card-title class="text-primary font-weight-bold text-center">
+        {{ med.denomination }}
+      </v-card-title>
+      <v-card-text class="text-center">
+        <v-chip color="green" variant="elevated" size="default"
+          >Stock : {{ med.qte }}
+        </v-chip>
+      </v-card-text>
+      <v-card-subtitle
+        class="text-primary text-center font-italic font-weight-bold"
+        >{{ med.formepharmaceutique }}</v-card-subtitle
       >
-        Valider
-      </button>
-      <button @click="isEditing = false">Annuler</button>
-    </div>
-  </li>
+      <v-card-actions class="flex-wrap ga-4 pa-3">
+        <v-btn
+          icon="mdi-plus"
+          color="green"
+          variant="elevated"
+          size="small"
+          @click="$emit('eventIncrement', med)"
+        />
+        <v-btn
+          icon="mdi-minus"
+          color="warning"
+          variant="elevated"
+          size="small"
+          @click="$emit('eventDecrement', med)"
+        />
+        <v-btn
+          icon="mdi-pencil"
+          color="primary"
+          variant="elevated"
+          size="small"
+          @click="isEditing = true"
+        />
+        <v-btn
+          icon="mdi-delete"
+          color="red"
+          variant="elevated"
+          size="small"
+          @click="$emit('eventDelete', med.id)"
+        />
+      </v-card-actions>
+    </v-card>
+  </div>
+
+  <div v-else>
+    <v-card elevation="3" rounded="lg">
+      <v-card-title class="text-primary font-weight-bold">
+        <v-icon icon="mdi-pencil-circle" class="mr-2" />
+        Modification
+      </v-card-title>
+
+      <v-card-text class="d-flex flex-column ga-3">
+        <v-text-field
+          v-model="med.denomination"
+          label="Nom du médicament"
+          variant="outlined"
+          density="compact"
+          prepend-inner-icon="mdi-pill"
+          hide-details
+        />
+        <v-text-field
+          v-model="med.formepharmaceutique"
+          label="Forme pharmaceutique"
+          variant="outlined"
+          density="compact"
+          prepend-inner-icon="mdi-shape"
+          hide-details
+        />
+        <v-text-field
+          v-model.number="med.qte"
+          label="Quantité"
+          type="number"
+          variant="outlined"
+          density="compact"
+          prepend-inner-icon="mdi-package-variant"
+          hide-details
+          :min="0"
+        />
+        <v-file-input
+          label="Photo"
+          variant="outlined"
+          density="compact"
+          hide-details
+          @change="handleFileUpload"
+        />
+      </v-card-text>
+
+      <v-card-actions class="d-flex ga-2">
+        <v-btn
+          color="primary"
+          variant="flat"
+          prepend-icon="mdi-check"
+          flex
+          @click="
+            $emit('eventEdit', med);
+            isEditing = false;
+          "
+        >
+          Valider
+        </v-btn>
+        <v-btn
+          color="error"
+          variant="outlined"
+          prepend-icon="mdi-close"
+          flex
+          @click="isEditing = false"
+        >
+          Annuler
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </div>
 </template>
