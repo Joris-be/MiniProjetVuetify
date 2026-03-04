@@ -102,21 +102,34 @@ function handlerEditMedicament(med) {
 </script>
 
 <template>
-  <h3>Liste des médicaments</h3>
-  <MedicamentsSearch @eventSearch="AddHandler" />
-  <MedicamentsForm @eventAdd="handlerAddMedicament" />
+  <v-row>
+    <v-col cols="12" md="4">
+      <MedicamentsSearch @eventSearch="handlerSearchMedicament" />
+      <MedicamentsForm @eventAdd="handlerAddMedicament" />
+    </v-col>
 
-  <div class="medicaments-container">
-    <ul>
-      <MedicamentsListItem
-        v-for="med in listeMedicaments"
-        :key="med.id"
-        :med="med"
-        @eventDelete="handlerDeleteMedicament"
-        @eventIncrement="handlerIncrementMedicament"
-        @eventDecrement="handlerDecrementMedicament"
-        @eventEdit="handlerEditMedicament"
-      />
-    </ul>
-  </div>
+    <v-col cols="12" md="8">
+      <h2 class="text-h5 font-weight-bold text-primary mb-4">
+        <v-icon icon="mdi-pill" class="mr-2" />
+        Liste des médicaments
+      </h2>
+      <v-row>
+        <v-col
+          v-for="med in listeMedicaments"
+          :key="med.id"
+          cols="12"
+          sm="6"
+          lg="4"
+        >
+          <MedicamentsListItem
+            :med="med"
+            @eventDelete="handlerDeleteMedicament"
+            @eventIncrement="handlerIncrementMedicament"
+            @eventDecrement="handlerDecrementMedicament"
+            @eventEdit="handlerEditMedicament"
+          />
+        </v-col>
+      </v-row>
+    </v-col>
+  </v-row>
 </template>
