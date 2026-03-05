@@ -16,11 +16,5 @@ import MedicamentsList from './components/MedicamentsList.vue';
         <MedicamentsList />
       </v-container>
     </v-main>
-
-    <v-footer color="primary" class="text-center d-flex justify-center">
-      <span class="text-white text-caption"
-        >© 2026 Pharmacie - Tous droits réservés</span
-      >
-    </v-footer>
   </v-app>
 </template>

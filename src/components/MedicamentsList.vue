@@ -29,7 +29,7 @@ function handlerAddMedicament(med) {
   const fetchOptions = {
     method: 'POST',
     headers: myHeaders,
-    body: JSON.stringify(med), // ici on envoie l'objet JSON
+    body: JSON.stringify(med),
   };
   fetch(url, fetchOptions)
     .then((response) => response.json())
@@ -55,8 +55,8 @@ function handlerDeleteMedicament(id) {
 
 function handlerIncrementMedicament(med) {
   const medModifie = {
-    id: med.id, // obligatoire
-    qte: med.qte + 1, // champ à modifier
+    id: med.id,
+    qte: med.qte + 1,
   };
   fetch(url, {
     method: 'PUT',
@@ -64,7 +64,7 @@ function handlerIncrementMedicament(med) {
     body: JSON.stringify(medModifie),
   })
     .then(() => {
-      getMedicaments(); // recharge la liste
+      getMedicaments();
     })
     .catch((error) => console.log(error));
 }
@@ -85,7 +85,7 @@ function handlerDecrementMedicament(med) {
     .catch((error) => console.log(error));
 }
 
-function AddHandler(search) {
+function handlerSearchMedicament(search) {
   critere.value = search;
   getMedicaments();
 }

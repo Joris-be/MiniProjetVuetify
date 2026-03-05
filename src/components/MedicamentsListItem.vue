@@ -109,6 +109,7 @@ const handleFileUpload = (event) => {
           :min="0"
         />
         <v-file-input
+          v-model="med.photo"
           label="Photo"
           variant="outlined"
           density="compact"

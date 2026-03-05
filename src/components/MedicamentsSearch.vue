@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
-const libelle = ref(''); // c’est une variable réactive
-const emit = defineEmits(['eventSearch']); // définir l'événement eventAdd
+const libelle = ref(''); 
+const emit = defineEmits(['eventSearch']); 
 </script>
 
 <template>

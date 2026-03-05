@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from 'vue';
-const denomination = ref(''); // le nom que l’utilisateur tape
-const formepharmaceutique = ref('Comprimé'); // valeur par défaut
-const qte = ref(1); // quantité par défaut
-const photo = ref(null); // --> variable qui va contenir le fichier en base64
+const denomination = ref('');
+const formepharmaceutique = ref('Comprimé');
+const qte = ref(1);
+const photo = ref(null);
 
 const emit = defineEmits(['eventAdd']);
 
