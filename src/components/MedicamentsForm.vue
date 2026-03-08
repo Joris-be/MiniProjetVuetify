@@ -29,7 +29,7 @@ function submitForm() {
     photo: photo.value,
   };
 
-  emit('eventAdd', med); // envoie l’objet au parent
+  emit('eventAdd', med);
   denomination.value = '';
   formepharmaceutique.value = '';
   qte.value = 1;
