@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 const denomination = ref('');
-const formepharmaceutique = ref('Comprimé');
+const formepharmaceutique = ref('');
 const qte = ref(1);
 const photo = ref(null);
 
